@@ -1,0 +1,100 @@
+.hotel-section .common-action-container .paginationIcons {
+  display: flex;
+  justify-content: flex-end;
+}
+.hotel-section .common-action-container .paginationIcons button {
+  background: transparent;
+  border-radius: 7px;
+  width: 8vw;
+  border-style: ridge;
+  padding: 0.5rem;
+}
+.hotel-section .common-action-container .paginationIcons .icon-width {
+  width: 3vw;
+}
+.hotel-section .common-action-container .paginationIcons .icon-right {
+  margin-left: 0.5rem;
+}
+.hotel-section .hotel-list-main-container {
+  height: 81vh;
+  padding-left: 0;
+  display: flex;
+  padding: 2rem;
+  padding-top: 0.5rem;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+.hotel-section .hotel-list-main-container .hotelCard {
+  padding: 1rem;
+  padding-top: 0;
+  height: 32vh;
+  width: 21%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 1rem;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-image {
+  height: 48%;
+  padding: 0 !important;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-image img {
+  padding: 0 !important;
+  height: 100%;
+  width: 99%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-body {
+  padding: 1rem;
+  height: 36%;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-body .card-body-heading {
+  font-size: 1.5rem;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-action {
+  height: 25%;
+  display: flex;
+  align-items: flex-end;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-action .text {
+  font-size: 1rem;
+}
+.hotel-section .hotel-list-main-container .hotelCard .card-action .icon {
+  font-size: 1.5rem;
+}
+.hotel-section .hotel-list-main-container .hotelCard:hover {
+  -webkit-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+}
+.hotelReport-section .container .common-action-container button {
+  background: #E8C197;
+}
+.hotelReport-section .container .common-action-container .btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.hotelReport-section .container .report-main-container {
+  height: 81vh;
+  padding: 2rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.hotelReport-section .container .report-main-container table {
+  table-layout: fixed;
+  width: 100%;
+}
+.hotelReport-section .container .report-main-container thead {
+  width: 100%;
+}
+.hotelReport-section .container .report-main-container td {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  font-size: 1vw;
+}
+.hotelReport-section .container .report-main-container .loadingSize {
+  font-size: 1.1vw;
+}
+

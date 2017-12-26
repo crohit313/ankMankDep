@@ -1,0 +1,58 @@
+<section class="section advertisement-section" data-ng-controller="advertisementListController as adsController" data-ng-init="adsController.initFunction()">
+  <div class="container full-width full-height">
+    <header-Template></header-Template>
+    <div class="row common-action-container full-width">
+      <div class="col-md-6 button-container no-padding">
+        <button class="btn add-banner-btn" ui-sref="advertisement.create">Add New Banner</button>
+      </div>
+      <div class="col-md-6 filter-container">
+        <button class="icon-width" data-ng-click="adsController.advertisementListByPage('decrease')" data-ng-disabled="adsController.currentPage == 1" data-ng-class="{'disabled': adsController.currentPage == 1 }"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="icon-width icon-right" data-ng-click="adsController.advertisementListByPage('increase')" data-ng-disabled="adsController.advertisementList.length < adsController.itemsPerPage" data-ng-class="{'disabled': adsController.advertisementList.length < adsController.itemsPerPage }"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="row main-container full-width" ng-hide="adsController.showLoading" ng-if="adsController.advertisementList.length">
+      <div class="col-md-12 full-height">
+        <div class="row card-container">
+          <div class="advertisementCard  col-md-3" data-ng-repeat="advertisement in adsController.advertisementList | orderBy: 'name' track by $index">
+              <div class="row card-image horizontal-centered no-padding cursor-pointer" data-ui-sref="advertisement.edit({advertisementId: advertisement._id})">
+                <img src="{{adsController.awsUrl+advertisement.imageUrl}}" ng-click="check1(advertisment, adsController.awsUrl+advertisement.imageUrl)" class="img-responsive" alt="no preview">
+              </div>
+              <div class="row card-body horizontal-centered card-body cursor-pointer" data-ui-sref="advertisement.edit({advertisementId: advertisement._id})">
+                <div class="col-md-12">
+                  <div class="row card-body-heading text-ellipses">
+                    {{advertisement.name}}
+                  </div>
+                  <div class="row">
+                    {{advertisement.startDate | date: 'dd-MM-yyyy'}}  
+                  </div>
+                  <div class="row">
+                    {{advertisement.endDate | date: 'dd-MM-yyyy'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row card-action">
+                <div class="col-md-7 no-padding text text-center">
+                  <div data-ng-if="advertisement.isActive">
+                    active now
+                  </div>
+                  <div data-ng-if="!advertisement.isActive">
+                    disabled
+                  </div>
+                </div>
+                <div class="col-md-5 no-padding icon cursor-pointer">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true" data-ui-sref="advertisement.edit({advertisementId: advertisement._id})"></i>                  
+                    <i class="fa fa-trash-o" aria-hidden="true" data-ng-click="adsController.openModal(advertisement)"></i>                  
+                </div>
+              </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="adsController.showLoading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+    </div>
+    <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="!adsController.showLoading && !adsController.advertisementList.length">
+        <h3>No advertisement found</h3>
+     </div> 
+  </div>
+</section>  

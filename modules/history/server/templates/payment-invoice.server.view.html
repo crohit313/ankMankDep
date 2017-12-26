@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+</head>
+
+<body>
+  <p>Hello,</p>
+  <p>Below are the details of your recent transaction at hotel {{invoice.hotelName}} using BVault app:</p>
+  <br>
+
+  <table style="text-align: left; width: fit-content; background-color: #E8C197; padding: 1rem; border-radius: 5px;">
+    <tbody>
+        <tr>
+            <th>Date</th>
+            <td>{{invoice.date}}</td>
+        </tr>
+        <tr>
+            <th>User Name</th>    
+            <td>{{invoice.userName}}</td>
+        </tr>
+        <tr>
+            <th>Bottle Name</th>    
+            <td>{{invoice.bottleName}}</td>
+        </tr>
+        <tr>
+            <th>Unique Code</th>    
+            <td>{{invoice.uniqueCode}}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>    
+            <td>{{invoice.quantity}} {{invoice.unit}}</td>
+        </tr>
+        <tr>
+            <th>Amount (Inclusive of all taxes)</th>    
+            <td>{{invoice.cost}}</td>
+        </tr>
+        <tr>
+            <th>Service charges (at {{invoice.taxPercentage}} %)</th>    
+            <td>{{invoice.tax}}</td>
+        </tr>
+        <tr>
+            <th>Status</th>    
+            <td>{{invoice.status}}</td>
+        </tr>
+    </tbody>
+</table>
+  <br>
+  <p>If you find any discrepancy in the above receipt please contact us at business@bvault.in</p>
+  <br>
+  <br>
+  <p>Cheers,</p>
+  <p>BVault Team</p>
+</body>
+</html>

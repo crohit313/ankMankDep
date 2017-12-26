@@ -1,0 +1,132 @@
+@font-face {
+  font-family: 'Lato-Black';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Light';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Bold.eot') format('embedded-opentype');
+}
+.bottle-section .common-action-container .button-container {
+  display: flex;
+}
+.bottle-section .common-action-container .button-container .add-product-btn {
+  background-color: #E8C197;
+}
+.bottle-section .common-action-container .filter-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.bottle-section .common-action-container .filter-container button {
+  background: transparent;
+  border-radius: 7px;
+  width: 8vw;
+  border-style: ridge;
+  padding: 0.5rem;
+}
+.bottle-section .common-action-container .filter-container .icon-width {
+  width: 3vw;
+}
+.bottle-section .common-action-container .filter-container .icon-right {
+  margin-left: 0.5rem;
+}
+.bottle-section .bottle-list-main-container {
+  height: 81vh;
+  padding-left: 0;
+  padding-top: 0.5rem;
+  overflow-y: scroll;
+}
+.bottle-section .bottle-list-main-container .card-container {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard {
+  padding: 1rem;
+  padding-top: 0;
+  height: 30vh;
+  width: 21%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 1rem;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-image {
+  height: 48%;
+  padding: 0 !important;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-image img {
+  padding: 0 !important;
+  height: 100%;
+  width: 98.5%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-body {
+  padding: 1rem;
+  height: 36%;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-body .card-body-heading {
+  font-size: 1.5rem;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-action {
+  height: 25%;
+  display: flex;
+  align-items: flex-end;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-action .text {
+  font-size: 1rem;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-action .icon {
+  font-size: 1.5rem;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard:hover {
+  -webkit-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .bottle-selection-check {
+  font-size: 2rem;
+  color: #2EC9A7;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox-position {
+  position: absolute;
+  top: 0px;
+  left: -10px;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .card-image-top {
+  position: relative;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox .cr {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #a9a9a9;
+  border-radius: .25em;
+  width: 1.3em;
+  height: 1.3em;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox .cr .cr-icon {
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 20%;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox label input[type="checkbox"] {
+  display: none;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+  transform: scale(3) rotateZ(-20deg);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+  color: #2EC9A7;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+  transform: scale(1) rotateZ(0deg);
+  opacity: 1;
+}
+.bottle-section .bottle-list-main-container .card-container .productCard .checkbox label input[type="checkbox"]:disabled + .cr {
+  opacity: .5;
+}

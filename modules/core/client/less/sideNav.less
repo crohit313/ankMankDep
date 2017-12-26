@@ -1,0 +1,47 @@
+@import "font.less";
+.sidenav {
+    height: 100vh;
+    width: 25%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #444444;
+    overflow-x: hidden;
+    transition: 0.5s;
+    // padding-top: 60px;
+
+    .logoName {
+        height: 30vh;
+        display: flex;
+        justify-content: center;
+        font-family: 'Lato-Bold';
+        font-size: 6.5vw;
+        color: white;
+    }
+
+    .navLinks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Lato-Bold';
+        font-size: 2.5vw;
+    }
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.closeSideNavbar {
+    width: 0;
+}

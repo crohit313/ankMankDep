@@ -1,0 +1,147 @@
+.createBanner-section .common-action-container button {
+  background: #E8C197;
+}
+.createBanner-section .common-action-container .btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.createBanner-section .main-container {
+  height: 81vh;
+  padding: 2rem;
+  overflow-y: scroll;
+}
+.createBanner-section .main-container .image-container {
+  height: 32.5%;
+}
+.createBanner-section .main-container .image-container span {
+  width: 100%;
+}
+.createBanner-section .main-container .image-container .image-box {
+  width: 750px !important;
+  height: 422px !important;
+  display: flex;
+  justify-content: center;
+}
+.createBanner-section .main-container .input-box-container {
+  height: 53%;
+  padding-top: 2rem;
+}
+.createBanner-section .main-container .input-box-container .create-update-text {
+  margin-left: 1.5rem;
+}
+.createBanner-section .main-container .input-box-container .bottle-name-box {
+  margin-left: 1.5rem;
+  width: 98.5%;
+}
+.createBanner-section .main-container .input-box-container .upload-image-btn {
+  background: lightgrey;
+  color: black;
+}
+.createBanner-section .main-container .action-container {
+  height: 7%;
+  display: flex;
+  justify-content: baseline;
+  align-items: flex-end;
+}
+.createBanner-section .main-container .action-container .update-btn-container {
+  width: 48% !important;
+}
+.createBanner-section .main-container .action-container .update-btn-container .update-btn {
+  background: #E8C197;
+}
+.createBanner-section .main-container .action-container .cancel-btn-container {
+  width: 48% !important;
+}
+.createBanner-section .main-container .action-container .cancel-btn-container .cancel-btn {
+  background: lightgrey;
+}
+
+@font-face {
+  font-family: 'Lato-Black';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Light';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Bold.eot') format('embedded-opentype');
+}
+.advertisement-section .common-action-container .button-container {
+  display: flex;
+}
+.advertisement-section .common-action-container .button-container .add-banner-btn {
+  background-color: #E8C197;
+}
+.advertisement-section .common-action-container .filter-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.advertisement-section .common-action-container .filter-container button {
+  background: transparent;
+  border-radius: 7px;
+  width: 8vw;
+  border-style: ridge;
+  padding: 0.5rem;
+}
+.advertisement-section .common-action-container .filter-container .icon-width {
+  width: 3vw;
+}
+.advertisement-section .common-action-container .filter-container .icon-right {
+  margin-left: 0.5rem;
+}
+.advertisement-section .main-container {
+  height: 81vh;
+  padding-left: 0;
+  padding-top: 0.5rem;
+  overflow-y: scroll;
+}
+.advertisement-section .main-container .card-container {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+.advertisement-section .main-container .card-container .advertisementCard {
+  padding: 1rem;
+  padding-top: 0;
+  height: 32vh;
+  width: 21%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 1rem;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-image {
+  height: 48%;
+  padding: 0 !important;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-image img {
+  padding: 0 !important;
+  height: 100%;
+  width: 98.5%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-body {
+  padding: 1rem;
+  height: 36%;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-body .card-body-heading {
+  font-size: 1.5rem;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-action {
+  height: 25%;
+  display: flex;
+  align-items: flex-end;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-action .text {
+  font-size: 1rem;
+}
+.advertisement-section .main-container .card-container .advertisementCard .card-action .icon {
+  font-size: 1.5rem;
+}
+.advertisement-section .main-container .card-container .advertisementCard:hover {
+  -webkit-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,22 @@
+.heading-container {
+  height: 10vh;
+}
+.heading-container span {
+  font-family: 'Lato-Light';
+  font-size: 4.5vw;
+}
+.heading-container .action-btn-container {
+  width: 29.33%;
+}
+.heading-container .action-btn-container .action-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+.heading-container .action-btn-container .action-icon-container .icon-right {
+  margin-left: 1rem;
+}
+.heading-container .action-btn-container .action-icon-container .icon-width {
+  font-size: 3rem;
+}

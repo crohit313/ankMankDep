@@ -1,0 +1,56 @@
+<section class="section bottle-section" data-ng-controller="bottleListController as bottleController" data-ng-init="bottleController.initFunction()">
+  <div class="container full-width full-height">
+    <header-Template></header-Template>
+    <div class="row common-action-container full-width">
+      <div class="col-md-3 col-sm-3 col-xs-3 button-container no-padding">
+        <button class="btn add-product-btn" ui-sref="bottles.create">Add Product</button>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
+          <select class="form-control selectpicker" ng-options="drink as drink.type for drink in bottleController.drinkTypes" ng-model="bottleController.selectedOption" ng-change="bottleController.bottleListByDrinkType(bottleController.selectedOption)">
+              <option value="">All</option>
+          </select>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6 filter-container">
+        <button class="icon-width" data-ng-click="bottleController.bottleListByPage('decrease')" data-ng-disabled="bottleController.currentPage == 1 && bottleController.currentPageDrinkType ==1" data-ng-class="{'disabled': bottleController.currentPage == 1 && bottleController.currentPageDrinkType ==1}"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="icon-width icon-right" data-ng-click="bottleController.bottleListByPage('increase')" data-ng-disabled="bottleController.bottleList.length < bottleController.itemsPerPage" data-ng-class="{'disabled': bottleController.bottleList.length < bottleController.itemsPerPage || bottleController.disablePageNavigation}"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="row bottle-list-main-container full-width" ng-hide="bottleController.showLoading" ng-if="bottleController.bottleList.length">
+      <div class="col-md-12 col-sm-12 col-xs-12 full-height">
+        <div class="row card-container">
+          <div class="productCard  col-md-3" data-ng-repeat="bottle in bottleController.bottleList | orderBy: 'name'">
+              <div class="row card-image horizontal-centered no-padding cursor-pointer" data-ui-sref="bottles.edit({bottleId: bottle._id})" ng-click="bottleController.saveToRootScope()">
+                <img src="{{bottleController.awsUrl+bottle.imageUrl}}" class="img-responsive" alt="no preview">
+              </div>
+              <div class="row card-body horizontal-centered card-body cursor-pointer" data-ui-sref="bottles.edit({bottleId: bottle._id})" ng-click="bottleController.saveToRootScope()">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="row card-body-heading card-title-font text-ellipses" tooltip="{{bottle.name}}">
+                    {{bottle.name}}
+                  </div>
+                </div>
+              </div>
+              <div class="row card-action">
+                <div class="col-md-7 col-sm-7 col-xs-7 no-padding text text-center">
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-5 no-padding icon cursor-pointer">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true" data-ui-sref="bottles.edit({bottleId: bottle._id})" ng-click="bottleController.saveToRootScope()"></i>                  
+                    <i class="fa fa-trash-o" aria-hidden="true" data-ng-click="bottleController.openModal(bottle)"></i>                  
+                </div>
+  
+              </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="bottleController.showLoading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+    </div>
+    <div class="full-width full-height horizontal-centered verticle-centered" ng-show="!bottleController.bottleList.length && bottleController.paginationForDrinkType">
+      <h3>No product found with the associated drink type</h3>
+    </div>
+    <div class="full-width full-height horizontal-centered verticle-centered" ng-show="!bottleController.bottleList.length && !bottleController.paginationForDrinkType">
+        <h3>No product found</h3>
+    </div>
+  </div>
+</section>  
+    

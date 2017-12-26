@@ -1,0 +1,97 @@
+<section class="section createUpdate-bottle-section" data-ng-controller="bottlesCreateUpdateController as bottleController" data-ng-init="bottleController.initFunction()">
+  <div class="container full-height full-width no-padding">
+    <header-Template></header-Template>
+    <div class="row common-action-container full-width">
+      <div class="col-md-6 col-sm-12">
+        <input type="text" name="" id="" class="border-none-box" placeholder="Enter bottle name" data-ng-model="bottleController.bottle.name" tooltip="Product Name">        
+      </div>
+    </div>
+    <div class="row bottle-main-container" ng-hide="bottleController.showLoading"> 
+      <div class="col-md-12 col-sm-12 col-xs-12 full-height full-width no-padding">
+        <div class="image-container horizontal-centered verticle-centered full-width">
+          <span class="btn btn-default btn-file  horizontal-centered verticle-centered image-box" tooltip="Click here to select image" ng-if="bottleController.imageUrl == ''" ngf-select="bottleController.setPreview(bottleController.file)" ng-model="bottleController.file" name="file" ngf-pattern="'image/*'"
+          ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+            Click here to select image <input type="file" type="file" class="button full-width" ngf-select="bottleController.setPreview(bottleController.file)" ng-model="bottleController.file" name="file" ngf-pattern="'image/*'"
+            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+          </span>
+          <span ng-if="bottleController.imageUrl" class="image-box btn btn-default btn-file" tooltip="Click here to select image">
+            <img src="{{bottleController.imageUrl}}" class="img-responsive" alt="Click here to select image" ngf-select="bottleController.setPreview(bottleController.file)" ng-model="bottleController.file" name="file" ngf-pattern="'image/*'"
+            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+          </span>
+        </div>
+        <div class="input-box-container full-height full-width verticle-centered">
+          <div class="row full width">
+            <div class="col-md-4 col-sm-4 col-xs-4 no-padding text-right">
+              <textarea name="" id="" cols="30" rows="10" class="form-control" ng-model="bottleController.bottle.description" tooltip="Bottle description" ng-trim="false" maxlength="200"></textarea>
+              <span>{{200 - bottleController.bottle.description.length}} left</span>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+              <div class="row bond-type full-height full-width horizontal-centered">
+                <div class="col-md-4">
+                  <label for="Platinum" class="text-center">Platinum</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[0].volume" min="0">
+                  </div>
+                </div>  
+                <div class="col-md-4 col-sm-4 col-xs-4" ng-hide="bottleController.showOnlyPlatinum">
+                  <label for="gold" class="text-center">Gold</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[1].volume" min="0">
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4" ng-hide="bottleController.showOnlyPlatinum">
+                  <label for="silver" class="text-center">Silver</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[2].volume" min="0">
+                  </div>
+                </div>
+              </div>
+              <div class="row bond-type full-height full-width horizontal-centered">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                  <label for="Platinum" class="text-center">Price</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[0].price" min="0">
+                  </div>
+                </div>  
+                <div class="col-md-4 col-sm-4 col-xs-4" ng-hide="bottleController.showOnlyPlatinum">
+                  <label for="gold" class="text-center">Price</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[1].price" min="0">
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4" ng-hide="bottleController.showOnlyPlatinum">
+                  <label for="silver" class="text-center">Price</label>
+                  <div class="form-group">
+                    <input type="number" class="vol-input-box form-control" ng-model="bottleController.bottle.price[2].price" min="0">
+                  </div>
+                </div>
+              </div>
+              <div class="row drinkType-dropDown full-width">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                  <label class="control-label" for="content">Drink Type</label>
+                  <div class="controls">
+                    <select class="form-control selectpicker" ng-options="drinkType.type for drinkType in bottleController.drinkTypes" data-ng-model="bottleController.selectedBottleType" ng-change="bottleController.setSelectedBottleType(bottleController.selectedBottleType)">
+                      {{drinkType.type}}
+                    </select>                      
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="action-btn-container full-height full-width">
+        <div class="col-md-4 col-sm-4 col-xs-4 update-btn-container">
+          <input type="button" class="btn create-btn" data-ng-if="bottleController.editMode" value="Update" data-ng-click="bottleController.createUpdate()">
+          <input type="button" class="btn create-btn" data-ng-if="!bottleController.editMode" value="Create" data-ng-click="bottleController.createUpdate()">
+          <input type="button" class="btn cancel-btn" value="Cancel" ui-sref="bottles.list">
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8 drinkType-btn" ng-controller="drinkTypeController as dtc">
+          <button class="btn btn-success" ng-click="dtc.openDrinkTypeModal()">Manage DrinkType</button>
+        </div>    
+      </div>    
+    </div>  
+  </div>
+  <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="bottleController.showLoading">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+  </div>
+</section>

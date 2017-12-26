@@ -1,0 +1,44 @@
+<section class="section hotel-section" data-ng-controller="hotelListController as hotelController" data-ng-init="hotelController.initFunction()">
+  <div class="container full-width full-height">
+    <header-Template></header-Template>
+    <div class="common-action-container full-width">
+    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+      <h3>Affillated Hotels</h3>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 paginationIcons">
+      <button class="icon-width" data-ng-click="hotelController.hotelListByPage('decrease')" data-ng-disabled="hotelController.currentPage == 1" data-ng-class="{'disabled': hotelController.currentPage == 1 }"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+      <button class="icon-width icon-right" data-ng-click="hotelController.hotelListByPage('increase')" data-ng-disabled="hotelController.hotelList.length < hotelController.itemsPerPage" data-ng-class="{'disabled': hotelController.hotelList.length < hotelController.itemsPerPage }"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+    </div>
+    <div class="row hotel-list-main-container full-width" ng-hide="hotelController.showLoading" ng-if="hotelController.hotelList.length">
+      <div class="hotelCard  col-md-3 col-sm-3 col-xs-3" data-ng-repeat="hotel in hotelController.hotelList | orderBy: 'name'">
+          <div class="row card-image horizontal-centered no-padding cursor-pointer" data-ui-sref="hotels.update({hotelId: hotel._id})">
+            <img src="{{hotelController.awsUrl+hotel.imageUrl[0]}}" class="img-responsive" alt="no preview">
+          </div>
+          <div class="row card-body horizontal-centered card-body cursor-pointer" data-ui-sref="hotels.update({hotelId: hotel._id})">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="row card-body-heading card-title-font text-ellipses" tooltip="{{hotel.name}}">
+                {{hotel.name}}
+              </div>
+            </div>
+          </div>
+          <div class="row card-action">
+            <div class="col-md-6 col-sm-6 col-xs-6 no-padding text text-center">
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 no-padding icon cursor-pointer">
+              <i class="fa fa-list-alt" aria-hidden="true" data-ui-sref="hotels.reports({hotelId: hotel._id})"></i>                
+              <i class="fa fa-pencil-square-o" aria-hidden="true" data-ui-sref="hotels.update({hotelId: hotel._id})"></i>                  
+              <i class="fa fa-trash-o" aria-hidden="true" data-ng-click="hotelController.openModal(hotel)"></i>                  
+            </div>
+
+          </div>
+      </div>
+    </div>
+    <div class="full-height full-width horizontal-centered verticle-centered" data-ng-if="!hotelController.hotelList.length && !hotelController.showLoading">
+      <h3>No hotels found</h3>
+    </div>  
+    <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="hotelController.showLoading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+    </div>
+  </div>
+</section>

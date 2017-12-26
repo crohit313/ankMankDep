@@ -1,0 +1,92 @@
+<section class="section createBanner-section login-background" >
+    <div class="container full-height full-width">
+        <div class="row full-height full-width">
+            <div class="row verticle-centered horizontal-centered ">
+                    <center><h1 class="welcome-text-color">Welcome To BVault</h1></center>
+            </div>
+            <div class="row full-height full-width">
+                <div class="col-md-9 login-container-position">
+                    <div class="col-md-12 log-in-division">
+                        <div class="row horizontal-centered">
+                            <div class="flip-container">
+                                <div class="flipper" data-ng-controller="AuthenticationController as vm" ng-init="vm.initFunction()" onUnLoad="vm.toggleNavbarStatus()">
+                                    <div class="front" data-ng-if="vm.login">
+                                        <div class="col-md-12 full-height">
+                                            <h1>Log In</h1>
+                                            <form id="loginForm" name="loginForm" style="margin-top:15vh;" data-ng-submit="vm.signIn()" autocomplete="off" >
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" placeholder="Email" ng-model="vm.credentials.email" autofocus="autofocus" required >
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" placeholder="Password" ng-model="vm.credentials.password" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-primary form-control login-background" value="Log In">
+                                                </div>
+                                            </form>
+                                            <div class="row horizontal-centered sign-up">
+                                                <p> <a ng-click="vm.showCard();">Don't have an account? Click here.</a></p>
+                                            </div>
+                                            <div class="row horizontal-centered sign-up">
+                                                <p> <a ui-sref="password.forgot">Forgot Password? Click here.</a></p>
+                                            </div>
+                                            <alert type="danger" data-ng-show="error" class="text-center text-danger">
+                                                    <span data-ng-bind="error"></span>
+                                            </alert>
+                                        </div>
+                                    </div>
+                                    <div class="back" data-ng-if="!vm.login">
+                                        <div class="col-md-12 full-height">
+                                            <h1 style="color:#010101">Hotel Sign Up</h1>
+                                            <form name="signUpForm" class="form-horizontal" novalidate style="padding-top:2vh" data-ng-submit="HC.createHotelAdmin(signUpForm.$valid);" data-ng-controller="hotelsController as HC">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" name="email" placeholder="Email Id" ng-model="HC.hotel.email" id="email" autofocus="autofocus" required >
+                                                        <span class="validationError" ng-show="HC.formSubmitted && (signUpForm.email.$invalid || signUpForm.email.$error.required)">Enter valid email</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" placeholder="Password" ng-model="HC.hotel.password" id="password" name="password" required>
+                                                        <span class="validationError" ng-show="HC.formSubmitted && signUpForm.password.$error.required">Enter valid password</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" placeholder="Confirm Password" class="form-control" ng-model="HC.hotel.confirmPassword" id="confirmPassword" name="confirmPassword" required>
+                                                        <span class="validationError" ng-show="HC.formSubmitted && signUpForm.confirmPassword.$error.required">Enter valid confirm-password</span>                                                        
+                                                        <span class="validationError" ng-if="HC.hotel.confirmPassword !==undefined && HC.hotel.password !== HC.hotel.confirmPassword">Password does not matched</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Hotel Name" data-ng-model="HC.hotel.name" id="name" name="hotelName" required>
+                                                        <span class="validationError" ng-show="HC.formSubmitted && signUpForm.hotelName.$error.required">Enter valid name</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Address" gm-places-autocomplete data-ng-model="HC.hotel.address" ng-change="HC.setHotelAddress()" name="address">
+                                                        <span class="validationError" ng-show="HC.formSubmitted && !(HC.hotel.lat && HC.hotel.lng)">Enter valid address</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="zipcode" ng-model="HC.hotel.zipcode" ng-minlength="6" ng-maxlength="6" name="zipcode">
+                                                        <span class="validationError" ng-show="HC.formSubmitted && (signUpForm.zipcode.$error.minlength || signUpForm.zipcode.$error.maxlength)">Enter valid zipcode</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Phone No" mask="(999)-999-9999" data-ng-model="HC.hotel.phone" name="phone" restrict="reject" limit="true" validate="false" clean="false" ng-minlength=14 ng-maxlength=14 required>
+                                                        <span class="validationError" ng-show="HC.formSubmitted && (signUpForm.phone.$error.minlength ||  signUpForm.phone.$error.maxlength || signUpForm.phone.$error.required)">Enter valid phone number</span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" class="btn btn-primary form-control" style="background: #010101;" value="Sign UP">
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                            <div class="row horizontal-centered sign-up">
+                                                    <p> <a ng-click="vm.showCard();">Already have an account? Click here.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 backgroundImage">
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>

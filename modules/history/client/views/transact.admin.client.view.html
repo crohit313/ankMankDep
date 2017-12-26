@@ -1,0 +1,134 @@
+<section class="section createBanner-section" data-ng-controller="historyController as historyController" ng-init="historyController.initFunction()">
+    <div class="container full-height full-width" >
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width no-margin" >
+            <div class="col-md-3 col-sm-3 col-xs-3 verticle-centered">
+                <form name="bottleCode" ng-model="bottleCode" data-ng-submit="historyController.verifyBottleCode()">
+                    <input class="hide-border full-height full-width" placeholder="Type Bottle Code" ng-model="historyController.uniqueCode" tooltip="Enter Bottle Code" capitalize autofocus="true"></input>
+                </form>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 forgot-password-pos verticle-centered">
+                    <!-- <span ><a data-toggle="modal" data-target="#myModal">Forgot Password</a></span> -->
+            </div>                      
+            <div class="col-md-3 col-sm-3 col-xs-3 verticle-centered bottle-code-submit-btn">
+                <button type="button" class="btn transaction-submit-order-btn" data-ng-click="historyController.verifyBottleCode()" ng-disabled="historyController.showOverlay">Submit</button>
+            </div>   
+        </div>
+        <div class="row full-width transaction-action-container " ng-hide="historyController.showUniqueCodeLoading" ng-show="!historyController.showOverlay">
+            <div class="col-md-4 col-sm-4 col-xs-4 full-height">
+                <div class="row verticle-centered horizontal-centered full-height">
+                    <b>Bottle Name</b>
+                    <span><h3>{{historyController.bottleDetails[0].bottle.name}}</h3></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 full-height">
+                <div class="row verticle-centered horizontal-centered full-height">
+                    <b>Bottle Owner</b>
+                    <span><h3>{{historyController.bottleDetails[0].user.displayName}}</h3></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 full-height">
+                <div class="row verticle-centered horizontal-centered full-height">
+                    <b>Balance In Stock</b>
+                    <span style="color:#2EC9A7;"><h3>{{historyController.bottleDetails[0].remainingVolume}} {{historyController.bottleDetails[0].bottle.unit}}</h3></span>
+                </div>
+            </div>
+        </div>
+        <div class="row transaction-action-container full-height full-width horizontal-centered verticle-centered" ng-show="historyController.showUniqueCodeLoading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>
+        <div class="row div-border full-width info" ng-show="!historyController.showOverlay">
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <span>Status</Span></br>
+                <span class="glyphicon glyphicon-exclamation-sign" style="color:#ff3300;padding: 1rem;" ng-if="historyController.pendingConfirmtion">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>
+                    <span>Bottle Code</span></br>
+                    <h4><span style="color:#2EC9A7;">{{historyController.bottle.uniqueCode}} </span></h4>
+                </p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>
+                    <span> Category</span></br>
+                    <h4><span>{{historyController.bottleDetails[0].purchasedType !== "" ? historyController.bottleDetails[0].purchasedType : 'NA'}}</span></h4>
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <input type="number" class="form-control" placeholder="Consumed Quantity" ng-model="historyController.bottle.consumedQuantity" tooltip="Enter Consumed Quantity" min="0"></input>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2" style="padding-bottom:1vh;">
+                <button type="button" class="btn transaction-submit-btn bottle-code-submit-btn" ng-click="historyController.setPaymentStatus()">Submit</button>
+            </div>
+        </div>
+        <div class="full-width full-height payment-container" ng-show="historyController.showOverlay">
+            <div id="infoi" class="full-width card" ng-class="{'horizontal-centered verticle-centered': !historyController.showPaymentReceipt}">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Payment Status</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="loading-container" ng-show="!historyController.showPaymentReceipt">
+                        <div class="row full-height full-width horizontal-centered verticle-centered">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+                        </div>
+                        <div class="row">
+                            <h3 class="text-center">Waiting for user confirmation</h3>
+                        </div>
+                    </div> -->
+                    <div class="row" ng-show="historyController.showPaymentReceipt">
+                        <div class="row table-container no-margin">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>Date</th>    
+                                        <td>{{historyController.date | date:'dd-MM-yyyy' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>User Name</th>    
+                                        <td>{{historyController.user.displayName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bottle Name</th>    
+                                        <td>{{historyController.paymentInvoice.bottleName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Unique Code</th>    
+                                        <td>{{historyController.paymentInvoice.uniqueCode}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quantity</th>    
+                                        <td>{{historyController.paymentInvoice.quantity}} {{historyController.bottleDetails[0].bottle.unit}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Amount (Inclusive of all taxes)</th>    
+                                        <td>{{historyController.paymentInvoice.cost}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Service charges (at {{historyController.hotel.taxPercentage}} %)</th>    
+                                        <td>{{historyController.paymentInvoice.tax}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status</th>    
+                                        <td>{{historyController.paymentInvoice.status}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer horizontal-centered" ng-hide="historyController.showPaymentReceipt">
+                    <button type="button" class="btn btn" ng-click="historyController.resendPaymentRequest()">Resend</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="historyController.cancelPaymentRequest()">Cancel</button>            
+                </div> -->
+                <div class="modal-footer-btn horizontal-centered" ng-show="historyController.showPaymentReceipt">
+                    <div class="row">
+                        <h4 class="text-center">Copy of this invoice has been emailed to you</h4>                        
+                    </div>
+                    <div class="row horizontal-centered">
+                        <button type="button" class="btn ok-btn col-md-4 col-sm-4 col-xs-4" data-dismiss="modal" ng-click="historyController.clearCurrentPayment()">OK</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</section>

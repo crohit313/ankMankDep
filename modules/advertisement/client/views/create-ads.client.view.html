@@ -1,0 +1,83 @@
+<section class="section createBanner-section" data-ng-controller="advertisementController as adsController" ng-init="adsController.initFunction()">
+    <div class="container full-width full-height">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <input type="text" name="" id="" class="border-none-box" placeholder="Enter advertisement name" data-ng-model="adsController.advertisement.name">                    
+            </div>
+        </div>
+        <div class="row main-container full-height" ng-hide="adsController.showLoading">
+            <div class="col-md-12 col-sm-12 col-xs-12 full-height no-padding-left">
+                <div class="row image-container horizontal-centered verticle-centered full-width full-height">
+                    <span class="btn btn-default btn-file  horizontal-centered verticle-centered image-box" ng-if="adsController.imageUrl == ''" ngf-select="adsController.setPreview(adsController.file)" ng-model="adsController.file" name="file" ngf-pattern="'image/*'"
+                    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" tooltip="Click here to select image">
+                        Click here to select image <input type="file" type="file" class="button full-width" ngf-select="adsController.setPreview(adsController.file)" ng-model="adsController.file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                    </span>
+                    <span ng-if="adsController.imageUrl" class="image-box btn btn-default btn-file" tooltip="Click here to select image">
+                        <img src="{{adsController.imageUrl}}" class="img-responsive" alt="Click here to select image" ngf-select="adsController.setPreview(adsController.file)" ng-model="adsController.file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                    </span>                
+                </div>
+                <div class="row input-box-container full-width horizontal-centered verticle-centered">
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding-left">
+                        <div class="row full-width form-group no-padding-left">
+                            <div class="col-md-6 col-sm-6 col-xs-6 form-group text-right">
+                                <textarea class="form-control" placeholder="Enter advertisement description" name="" id="" cols="30" rows="10" data-ng-model="adsController.advertisement.description" ng-trim="false" maxlength="200"></textarea>
+                                <span>{{200 - adsController.advertisement.description.length}} left</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                <div class="row form-group">
+                                    <label for="startDate">Starts</label>
+                                    <div class="input-group">
+                                        <input readonly type="text" class="form-control" ng-model="adsController.advertisement.startDate" datepicker-popup="dd-MM-yyyy" datepicker-formate="dd-MM-yyyy" datepicker-options="{{adsController.options}}" is-open="adsController.startDatePickerOpened" close-text="Close" ng-required="true" ng-change="adsController.checkDate();" min-date="{{adsController.currentDate}}"/>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" ng-click="adsController.toggleStartDatePicker($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>    
+                                    </div>
+                                    </div>
+                                <div class="row form-group">
+                                    <label for="endDate">Ends</label>
+                                    <div class="input-group">
+                                        <input readonly type="text" class="form-control" ng-model="adsController.advertisement.endDate" datepicker-popup="dd-MM-yyyy" datepicker-options="{{adsController.options}}" is-open="adsController.endDatePickerOpened" close-text="Close" ng-required="true" ng-change="adsController.checkDate();" min-date="{{adsController.currentDate}}"/>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" ng-click="adsController.toggleEndDatePicker($event)" >
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>    
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label for="status">Status</label>
+                                    <div class="input-group full-width">
+                                        <select class=" form-control selectpicker" data-ng-model="adsController.advertisement.isActive">
+                                            <option value=true>Active</option>
+                                            <option value=false>Disabled</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row action-container full-width">
+                    <div class="col-md-6 col-sm-6 col-xs-6 update-btn-container">
+                        <input type="button" class="btn update-btn full-width" data-ng-if="adsController.editMode" value="Update" data-ng-click="adsController.checkDate();adsController.createUpdateAdvertisement()">
+                        <input type="button" class="btn update-btn full-width" data-ng-if="!adsController.editMode" value="Create" data-ng-click="adsController.checkDate();adsController.createUpdateAdvertisement()">
+                        
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 cancel-btn-container no-padding" ui-sref="advertisement.list">
+                        <input type="button" class="btn cancel-btn full-width" value="Cancel">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="adsController.showLoading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>
+    </div>
+</section>
+
+  

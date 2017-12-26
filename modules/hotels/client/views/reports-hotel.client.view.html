@@ -1,0 +1,115 @@
+
+<section class="section advertisement-section hotelReport-section" data-ng-controller="hotelReportController as reportController" data-ng-init="reportController.initFunction();reportController.getAllDrinkType();">
+    <div class="container full-height full-width">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width">
+            <div class="col-md-4 col-sm-4 col-xs-4 verticle-centered">
+                <span class="fontSize">Hotel Report</span>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <select ng-model="reportController.selectedDrinkType" class="form-control" data-ng-options="drink as drink.type for drink in reportController.drinkTypeList" ng-change="reportController.changeDrinkType();">
+                    <option value="">All</option>
+                </select>
+                </div>   
+            <div class="col-md-4 col-sm-4 col-xs-4 btn-container">
+                <button class="btn back-btn" ng-if="reportController.userRole == 'superAdmin'" ui-sref="hotels.list">Back</button>
+            </div>
+        </div>
+        <div class="row main-container report-main-container full-height full-width">
+            <div class="row text-right body-scroll" ng-if="reportController.filterdList.length" ng-hide="reportController.showLoading">
+                <a class="btn"  title="Export Table" ng-click='csv.generate()' ng-href="{{ csv.link() }}"
+                    download="HotelReport.csv">
+                   <i class="glyphicon glyphicon-new-window"></i> &#160;Export
+                </a>
+                <!-- <table class="table table-striped table-hover table-fixed table-responsive full-height" data-ng-show="report.bottle.type.type == selectedDrinkType.type || selectedDrinkType.type == All" ng-if="reportController.userRole=='superAdmin'">
+                    <thead>
+                        <th>Hotel</th>
+                        <th>Email</th>
+                        <th>Customer name</th>
+                        <th>Bottle code</th>
+                        <th>Bottle name</th>
+                        <th>Consumed</th>
+                        <th>Cost</th>
+                        <th>Date</th>
+                        <th>Payment completed</th>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="report in reportController.filterdList | orderBy: '-created'">
+                            <td class="col-md-2 col-sm-2 col-xs-2">{{report.hotel.name}}</td>
+                            <td>{{report.user.email}}</td>
+                            <td>{{report.user.displayName}}</td>
+                            <td>{{report.user.uniqueCode}}</td>
+                            <td>{{report.bottle.name}}</td>
+                            <td>{{report.consumedVolume}} {{report.bottle.unit}}</td>
+                            <td ng-if="report.cost">{{report.cost}}</td>
+                            <td ng-if="!report.cost">0</td>
+                            <td>{{report.created | date: 'dd-MM-yyyy'}}</td>
+                            <td class="cursor-pointer" ng-hide="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)" ng-if="report.status" ng-click="reportController.changePaymentStatus(report, reportController.filterdList.indexOf(report))">Yes</td>
+                            <td class="cursor-pointer" ng-hide="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)" ng-if="!report.status" ng-click="reportController.changePaymentStatus(report, reportController.filterdList.indexOf(report))">No</td>
+                            <td class="cursor-pointer horizontal-centered verticle-centered" ng-show="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)"><i class="fa fa-spinner fa-pulse fa-3x fa-fw statusLoadingIcon"></i></td>
+                        </tr>
+                    </tbody>
+                </table> -->
+                
+                <table class="table table-striped table-hover table-fixed table-responsive full-height" export-csv="csv" separator=";">
+                    <thead ng-if="reportController.userRole=='superAdmin'">
+                        <th class="text-center" width="10%">Hotel</th>
+                        <th class="text-center"  width="10%">Email</th>
+                        <th class="text-center" width="15%" >Customer name</th>
+                        <th class="text-center" width="10%" >Code</th>
+                        <th class="text-center" width="15%">Bottle name</th>
+                        <th class="text-center" width="10%">Consumed</th>
+                        <th class="text-center" width="10%">Cost</th>
+                        <th class="text-center" width="10%">Date</th>
+                        <th class="text-center" width="10%">Payment</th>
+                    </thead>
+                    <thead ng-if="reportController.userRole=='admin'">
+                        <th class="text-center" width="15%">Hotel</th>
+                        <th class="text-center" width="15%" >Customer name</th>
+                        <th class="text-center" width="10%" >Code</th>
+                        <th class="text-center" width="15%">Bottle name</th>
+                        <th class="text-center" width="15%">Consumed</th>
+                        <th class="text-center" width="10%">Cost</th>
+                        <th class="text-center" width="10%">Date</th>
+                        <th class="text-center" width="10%">Payment</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="report in reportController.filterdList | orderBy: '-created'" ng-if="reportController.userRole=='superAdmin'">
+                            <td class="text-center" width="10%">{{report.hotel.name}}</td>
+                            <td class="text-center text-ellipses-tabel" width="10%">{{report.user.email}}</td>
+                            <td class="text-center" width="15%">{{report.user.displayName}}</td>
+                            <td class="text-center" width="10%">{{report.uniqueCode}}</td>
+                            <td class="text-center" width="15%">{{report.bottle.name}}</td>
+                            <td class="text-center" width="10%">{{report.consumedVolume}} {{report.bottle.unit}}</td>
+                            <td class="text-center" width="10%" ng-if="report.cost">{{report.cost}}</td>
+                            <td class="text-center" width="10%" ng-if="!report.cost">0</td>
+                            <td class="text-center" width="10%">{{report.created | date: 'dd-MM-yyyy'}}</td>
+                            <td class="text-center" width="10%" ng-hide="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)" ng-if="report.status" class="cursor-pointer" ng-click="reportController.changePaymentStatus(report, reportController.filterdList.indexOf(report))">Yes</td>
+                            <td class="text-center" width="10%" ng-hide="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)" ng-if="!report.status" class="cursor-pointer" ng-click="reportController.changePaymentStatus(report, reportController.filterdList.indexOf(report))">No</td>
+                            <td class="text-center horizontal-centered verticle-centered" ng-show="reportController.showStatusLoading && reportController.currentShowStatusLoadingIndex == reportController.filterdList.indexOf(report)"><i class="fa fa-spinner fa-pulse fa-3x fa-fw loadingSize"></i></td>
+                        </tr>
+                        <tr ng-repeat="report in reportController.filterdList | orderBy: '-created'" ng-if="reportController.userRole=='admin'">
+                            <td class="text-center" width="15%">{{report.hotel.name}}</td>
+                            <td class="text-center" width="15%">{{report.user.displayName}}</td>
+                            <td class="text-center" width="10%">{{report.uniqueCode}}</td>
+                            <td class="text-center" width="15%">{{report.bottle.name}}</td>
+                            <td class="text-center" width="15%">{{report.consumedVolume}} {{report.bottle.unit}}</td>
+                            <td class="text-center" width="10%" ng-if="report.cost">{{report.cost}}</td>
+                            <td class="text-center" width="10%" ng-if="!report.cost">0</td>
+                            <td class="text-center" width="10%">{{report.created | date: 'dd-MM-yyyy'}}</td>
+                            <td ng-if="report.status" width="10%" class="text-center">Yes</td>
+                            <td ng-if="!report.status" width="10%" class="text-center">No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row full-height full-width horizontal-centered verticle-centered" ng-if="!reportController.filterdList.length" ng-hide="reportController.showLoading">
+                <h3>No data found</h3>
+            </div>
+            <div class="row full-height full-width horizontal-centered verticle-centered" ng-if="reportController.showLoading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+            </div>
+
+        </div>
+    </div>
+</section>

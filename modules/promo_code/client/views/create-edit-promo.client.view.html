@@ -1,0 +1,71 @@
+<section class="section promo-code-section" data-ng-controller="createEditPromoCodeController as promoCodeController" data-ng-init="promoCodeController.initFunction()">
+    <div class="container full-width full-height">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width">
+            <div class="col-md-10 col-sm-10 col-xs-10 text-left">
+                <h3 ng-show="promoCodeController.editMode"> Update Promo Code</h3>
+                <h3 ng-hide="promoCodeController.editMode">New Promo Code</h3>
+            </div>
+        </div>
+        <div class="row main-container full-height full-width" ng-show="!promoCodeController.showLoading">
+            <div class="row" style="padding-top:2rem;">
+                <div class="form-group col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="form-group">
+                        <label for="newPromo" class="">Promo Code<sup style="color:red;">*</sup></label>
+                        <input type="text" class="form-control" ng-model="promoCodeController.newPromo.promoCode"  placeholder="Enter promo code" capitalize>
+                    </div> 
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="form-group">
+                        <label for="newPromo">Discount(Rs.)<sup style="color:red;">*</sup></label>
+                        <input type="number" min="0" class="form-control" ng-model="promoCodeController.newPromo.discount"  placeholder="Enter discount price">
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label for="newPromo" class="">Minimum Bill Amount<sup style="color:red;">*</sup></label>
+                                <input type="number" min="0" class="form-control" ng-model="promoCodeController.newPromo.minAmmountForDiscount"  placeholder="Enter minimum discount amount">
+                            </div> 
+                        </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-6 col-xs-6 text-left">
+                    <label for="startDate">Starts</label>
+                    <div class="input-group">
+                        <input readonly type="text" class="form-control" ng-model="promoCodeController.newPromo.startDate" datepicker-popup="dd-MM-yyyy" datepicker-formate="dd-MM-yyyy" datepicker-options="{{promoCodeController.options}}" is-open="promoCodeController.startDatePickerOpened" close-text="Close" ng-required="true" min-date="{{promoCodeController.currentDate}}" data-ng-change="promoCodeController.checkDate();"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="promoCodeController.toggleStartDatePicker($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>    
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-6 text-left">
+                    <label for="endDate">Ends</label>
+                    <div class="input-group">
+                        <input readonly type="text" class="form-control" ng-model="promoCodeController.newPromo.endDate" datepicker-popup="dd-MM-yyyy" datepicker-options="{{promoCodeController.options}}" is-open="promoCodeController.endDatePickerOpened" close-text="Close" ng-required="true" min-date="{{promoCodeController.currentDate}}" data-ng-change="promoCodeController.checkDate()"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="promoCodeController.toggleEndDatePicker($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>    
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6 text-center form-group">
+                    <button type="button" class="btn save-promo-code-btn-color form-control" data-ng-click="promoCodeController.savePromoCode();" ng-hide="promoCodeController.editMode">Save PromoCode</button>
+                    <button type="button" class="btn save-promo-code-btn-color form-control" data-ng-click="promoCodeController.updatePromoCode(promoCodeController.newPromo);" ng-show="promoCodeController.editMode">Update PromoCode</button>
+                </div>
+                <div class="col-md-6 text-center form-group">
+                    <button type="button" class="btn cancle-promo-code-btn-color form-control" ui-sref="promoCode.list">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="promoCodeController.showLoading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>  
+    </div>
+</section>

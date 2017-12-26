@@ -1,0 +1,6 @@
+.reports-section table {
+  border-bottom: 0px !important;
+}
+.reports-section table tbody .grey-background {
+  background: lightgrey !important;
+}

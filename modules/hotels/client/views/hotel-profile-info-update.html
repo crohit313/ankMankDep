@@ -1,0 +1,108 @@
+<section class="section hotel-section" data-ng-controller="hotelsController as hotelsController" data-ng-init="hotelsController.initFunction();">
+    <div class="container full-height full-width">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-height full-width">
+            <div class="col-md-7 col-sm-7 col-xs-7 verticle-centered">
+                <span class="fontSize text-left">{{hotelsController.hotel.name}}</span>
+            </div>
+            <div class="col-md-5 col-sm-5 change-password-pos text-right" ng-if="hotelsController.renderIfAdmin()">
+                <button type="button" class="btn hotel-profile-update-btn-color" ng-click="hotelsController.openChangePasswordModal();">Change Password</button>
+            </div>
+            <div class="col-md-5 col-sm-5 text-right" ng-if="hotelsController.renderIfSuperAdmin()">
+
+                <button class="btn manage-product-btn" ui-sref="bottles.manage({hotelId: hotelsController.hotel._id})">Manage Drink</button>
+            </div>  
+        </div> 
+        <div class="row hotel-main-container full-width" ng-hide="hotelsController.showLoading">
+            <div class="col-md-12 col-sm-12 col-xs-12 full-height">
+                <div class="row image-container horizontal-centered verticle-centered full-height">
+                    <span ng-if="!hotelsController.hotel.imageUrl.length" class="image-box btn btn-default btn-file">
+                        <img src="{{hotelsController.imageUrl}}" class="img-responsive" alt="Click here to select image" ngf-select="hotelsController.setPreview(hotelsController.file)" ng-model="hotelsController.file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-multiple="true">
+                        <div class="full-height full-width horizontal-centered verticle-centered" ng-show="hotelsController.hideCarosoul">
+                            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            {{hotelsController.progress}}                                                    
+                        </div>
+                    </span>
+                    <div class="slides_control" ng-if="hotelsController.hotel.imageUrl.length" ng-hide="hotelsController.hideCarosoul">
+                        <div class="full-height horizontal-centered">
+                            <carousel interval="hotelsController.slideInterval">
+                            <slide ng-repeat="slide in hotelsController.slides" active="slide.active">
+                                <img ng-src="{{slide.image}}" class="img-responsive" alt="">
+                                <div class="carousel-caption">
+                                <h4>Slide {{$index+1}}</h4>
+                                </div>
+                                <i  class="fa fa-camera cursor-pointer" tooltip="Click here to select image" style="color:black;" area-hidden="true" ngf-select="hotelsController.setPreview(hotelsController.file)" ng-model="hotelsController.file" name="file" ngf-pattern="'image/*'"
+                                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-multiple="true"></i>
+                                <i  class="fa fa-trash-o  cursor-pointer" style="color:black;" tooltip="Click here to delete image" aria-hidden="true" ng-click="hotelsController.openDeleteHotelImageModal(slide, hotelsController.slides.indexOf(slide))"></i>                                
+                            </slide>
+                            </carousel>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:2rem;">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control input-box-size" ng-model="hotelsController.hotel.name" tooltip="Hotel Name"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <input type="email" class="form-control input-box-size" ng-model="hotelsController.hotel.admin.email" readonly tooltip="Email Address"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-xs-4">
+                            <input type="text" class="form-control input-box-size" ng-model="hotelsController.hotel.phone" tooltip="Phone No"/>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="form-group col-xs-12">
+                            <input type="text" class="form-control input-box-size" gm-places-autocomplete ng-model="hotelsController.hotel.address" ng-change="hotelsController.setHotelAddress()" tooltip="Full Address"/>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group ">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
+                            <input type="text" class="form-control input-box-size" ng-model="hotelsController.hotel.city" tooltip="City"/>
+                        </div>  
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <input type="number" class="form-control input-box-size" ng-model="hotelsController.hotel.zipcode" tooltip="Zip Code" min="0"/>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <input type="number" class="form-control input-box-size" ng-model="hotelsController.hotel.taxPercentage" tooltip="Tax percentage" min="0"/>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row" style="padding-top:1rem;">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            <input type="Text" class="form-control input-box-size" ng-model="hotelsController.hotel.music" tooltip="Music"/>
+                        </div>  
+                        <div class="col-xs-4">
+                                <input type="text" class="form-control input-box-size" ng-model="hotelsController.hotel.cuisine" tooltip="Cuisine"/>
+                        </div>  
+                        <div class="col-xs-4">
+                                <input type="number" class="form-control input-box-size" ng-model="hotelsController.hotel.cost" tooltip="Approx cost for 2" min="0"/>
+                        </div> 
+                    </div>
+                </div>
+                <div class="row" style="padding-top:1rem;">
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-center form-group text-center">
+                        <!-- <button type="button" class="btn hotel-profile-update-btn-color form-control" ng-click="hotelsController.createUpdate();">Update Hotel Info</button> -->
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-center form-group text-center">
+                            <button type="button" class="btn hotel-profile-update-btn-color form-control" ng-click="hotelsController.createUpdate();">Update Hotel Info</button>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-center form-group text-center">
+                        <!-- <button type="button" class="btn hotel-profile-update-btn-color form-control" ng-click="hotelsController.createUpdate();">Update Hotel Info</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="hotelsController.showLoading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>
+    </div>
+</section>

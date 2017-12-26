@@ -1,0 +1,135 @@
+@import "modules/core/client/less/font.less";
+
+.bottle-section {
+
+    .common-action-container {
+        .button-container {
+            display: flex;
+            .add-product-btn {
+                background-color: #E8C197;
+            }
+        }
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            button {
+                background: transparent;
+                border-radius: 7px;
+                width: 8vw;
+                border-style: ridge;
+                padding: 0.5rem;
+                            
+            }
+            .icon-width {
+                width: 3vw;
+            }
+            .icon-right {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+
+    .bottle-list-main-container {
+        height: 81vh;
+        padding-left: 0;
+        padding-top: 0.5rem;
+        overflow-y: scroll;        
+        .card-container {
+            display: flex;
+            padding: 2rem;
+            flex-wrap: wrap;
+            .productCard {
+                padding: 1rem;
+                padding-top: 0;
+                height: 30vh;
+                width: 21%;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin: 1rem;
+
+                .card-image {
+                    height: 48%;
+                    padding: 0 !important;
+                    img {
+                        padding: 0 !important;
+                        height: 100%;
+                        width: 98.5%;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+                }
+                .card-body {
+                    padding: 1rem;
+                    height: 36%;
+
+                    .card-body-heading {
+                        // font-family: 'Lato-Bold';
+                        font-size: 1.5rem;
+                    }
+                }
+                .card-action {
+                    height: 25%;
+                    display: flex;
+                    align-items: flex-end;
+                    .text {
+                        font-size: 1rem
+                    }
+                    .icon {
+                        font-size: 1.5rem;
+                    }
+                }
+                &:hover{
+                    -webkit-box-shadow: 7px 7px 9px 0px rgba(0,0,0,0.25);
+                    -moz-box-shadow: 7px 7px 9px 0px rgba(0,0,0,0.25);
+                    box-shadow: 7px 7px 9px 0px rgba(0,0,0,0.25);
+                }
+                .bottle-selection-check{
+                    font-size: 2rem;
+                    color:#2EC9A7;
+                }
+                .checkbox-position{
+                    position: absolute;
+                    top: 0px;
+                    left: -10px;
+                }
+                .card-image-top{
+                    position: relative;
+                }
+                .checkbox .cr{
+                    position: relative;
+                    display: inline-block;
+                    border: 1px solid #a9a9a9;
+                    border-radius: .25em;
+                    width: 1.3em;
+                    height: 1.3em;
+                }
+                .checkbox .cr .cr-icon{
+                    position: absolute;
+                    font-size: .8em;
+                    line-height: 0;
+                    top: 50%;
+                    left: 20%;
+                }
+                .checkbox label input[type="checkbox"]{
+                    display: none;
+                }
+                .checkbox label input[type="checkbox"] + .cr > .cr-icon{
+                    transform: scale(3) rotateZ(-20deg);
+                    opacity: 0;
+                    transition: all .3s ease-in;
+                    color: #2EC9A7;
+                }
+                
+                .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+                    transform: scale(1) rotateZ(0deg);
+                    opacity: 1;
+                }
+                
+                .checkbox label input[type="checkbox"]:disabled + .cr{
+                    opacity: .5;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,71 @@
+<section class="drinkType-section" data-ng-controller="drinkTypeController as dtc" data-ng-init="dtc.initFunction()">
+  <div class="container">
+    <div class="row page-header text-center">
+        <h1>Drink Type
+        <i class="glyphicon glyphicon-remove pull-right cursor-pointer" align="right" ng-click="closeDrinkTypeModal($event)"></i></h1>
+    </div>
+    <div class="row input-box-container horizontal-centered" ng-hide="dtc.showLoading">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="type">Name</label>
+          <div class="controls">
+            <input name="type" type="text" data-ng-model="dtc.drinkType.type" id="type" class="form-control" placeholder="name" >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">  
+        <div class="form-group">
+          <label class="control-label" for="type">Unit</label>
+          <div class="controls">
+            <input name="type" type="text" data-ng-model="dtc.drinkType.unit" id="unit" class="form-control" placeholder="unit">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group btn-group">
+          <input type="submit" value="Add" class="btn add-btn" ng-click="dtc.createUpdateDrinkType()">
+        </div>
+      </div>
+    </div>
+    <div class="row list-group table-container" data-ng-if="dtc.drinkTypeList.length" ng-hide="dtc.showLoading">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sr no.</th>
+            <th>Name</th>
+            <th>Unit</th>
+            <th class="pull-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="drink in dtc.model.drinkTypeList" ng-include="dtc.getTemplate(drink)">
+            <script type="text/ng-template" class="col-xs-12" id="display">
+              <td>{{$index+1}}</td>
+              <td>{{drink.type}}</td>
+              <td>{{drink.unit}}</td>
+              <td class="pull-left width-12 btn-td">
+                <button class="btn update-btn" ng-click="dtc.editContact(drink)">Edit</button>
+                <button class="btn" ng-click="dtc.openModal(drink._id);">Delete</button>
+              </td>
+          </script>
+          <script type="text/ng-template" id="edit" class="col-xs-12">
+            <td>{{$index+1}}</td>
+            <td class="col-md-3"><input type="text" id="drinkTypeName" class="border-none-box" ng-class="{'border-bottom':dtc.editMode}" ng-model="dtc.model.selected.type" /></td>
+            <td class="col-md-3"><input type="text" id="drinkTypeUnit" class="border-none-box" ng-class="{'border-bottom':dtc.editMode}" ng-model="dtc.model.selected.unit"></td>
+            <td class="btn-td">
+              <button class="btn update-btn" ng-click="dtc.saveContact($index)">Update</button>
+              <button class="btn" ng-click="dtc.cancel()">Cancel</button>
+            </td>
+          </script>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-if="!dtc.drinkTypeList.length" ng-hide="dtc.showLoading">
+      No drink type yet, why don't you Add one?
+    </div>
+    <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="dtc.showLoading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+    </div>
+  </div>    
+</section>

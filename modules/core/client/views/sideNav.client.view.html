@@ -1,0 +1,27 @@
+<div class="container full-height no-margin no-padding full-width" ng-controller="sideNavController as navController" ng-init="navController.initFunction()">
+    <div class="row full-height no-margin">
+      <div class="col-md-3 col-sm-3 full-height">
+        <div class="hidden-xs sidenav" ng-class="{'closeSideNavbar': navController.hideNavbar}">
+          <div class="row logoName">
+            BVault
+          </div>
+          <div class="row navLinks" ng-if="navController.renderIfSuperAdmin()">
+              <a href="" id="advertisement" class="" ui-sref-active="active" ui-sref="advertisement.list">Manage Banners</a>
+              <a href="" id="bottles" ui-sref-active="active" class="" ui-sref="bottles.list">Manage Products</a>
+              <a href="#" id="hotels" ui-sref-active="active" class="" ui-sref="hotels.list">Manage Hotels</a>
+              <a href="" id="promoCode" data-ui-sref-active="active" class="" ui-sref="promoCode.list">PromoCode</a>
+          </div>
+          <div class="row navLinks" ng-if="navController.renderIfAdmin()">
+              <a href="" data-ui-sref-active="active" ui-sref="history.transact">Transact</a>
+              <a href=""  data-ui-sref-active="active" ui-sref="hotels.update">Update Info</a>
+              <a href="" data-ui-sref-active="active" ui-sref="bottles.manage">Manage Products</a>
+              <a href="" data-ui-sref-active="active" ui-sref="hotels.reports">Reports</a>
+          </div>
+        </div>  
+      </div>
+      <div class="col-md-9 col-sm-9 col-xs-12 no-padding" ng-class="{'full-width': navController.hideNavbar}" ui-view>
+        <!-- {% block content %}{% endblock %} -->
+    
+      </div>
+    </div>
+</div>

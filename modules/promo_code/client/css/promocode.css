@@ -1,0 +1,42 @@
+.promo-code-section .container .common-action-container .button-container .add-promo-code-btn {
+  background: #22B573;
+}
+.promo-code-section .container .common-action-container .fontSize {
+  font-size: x-large;
+  font-weight: bold;
+}
+.promo-code-section .container .main-container .table-fixed {
+  width: 100%;
+}
+.promo-code-section .container .main-container .table-fixed tbody {
+  min-height: 0vh;
+  max-height: 79%;
+  overflow-y: auto;
+  width: 100%;
+}
+.promo-code-section .container .main-container .table-fixed thead,
+.promo-code-section .container .main-container .table-fixed tbody,
+.promo-code-section .container .main-container .table-fixed tr,
+.promo-code-section .container .main-container .table-fixed td,
+.promo-code-section .container .main-container .table-fixed th {
+  display: block;
+  overflow: overlay;
+}
+.promo-code-section .container .main-container .table-fixed tbody td {
+  float: left;
+}
+.promo-code-section .container .main-container .table-fixed tbody td i {
+  font-size: 1.3rem;
+}
+.promo-code-section .container .main-container .table-fixed thead tr th {
+  float: left;
+  background-color: #FAFAFD;
+  text-align: center;
+  color: #050504;
+}
+.cancle-promo-code-btn-color {
+  background: #D3D3D3 !important;
+}
+.save-promo-code-btn-color {
+  background: #ffcc80 !important;
+}

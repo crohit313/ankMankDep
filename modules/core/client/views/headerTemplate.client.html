@@ -1,0 +1,13 @@
+<div class="row heading-container">
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <span class="text-ellipses full-height superAdminName">
+            Hello {{navController.authentication.username}}
+        </span>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 action-btn-container full-height">
+        <div class="row action-icon-container">
+            <i class="fa fa-cog icon-width cursor-pointer" aria-hidden="true" ui-sref="settings.profile"></i>
+            <i class="fa fa-power-off icon-width cursor-pointer icon-right" aria-hidden="true" ng-click="navController.signOut()"></i>
+        </div>
+    </div>
+</div>

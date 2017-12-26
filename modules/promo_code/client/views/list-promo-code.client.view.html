@@ -1,0 +1,44 @@
+<section class="section promo-code-section" data-ng-controller="promoCodeController as PC" data-ng-init="PC.initFunction();">
+    <div class="container full-width full-height">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width">
+            <div class="col-md-10 col-sm-10 col-xs-10 text-left">
+                <h3>Promo Code</h3>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3 verticle-centered bottle-code-submit-btn">
+                    <button type="button" ui-sref="promoCode.create" class="btn transaction-submit-order-btn">Add New</button>
+            </div> 
+        </div>
+        <div class="row main-container full-height full-width" ng-show="!PC.showLoading" ng-if="PC.promoCodeList.length">
+            <div class="main-container full-height full-width" style="padding-top:1rem;">
+                <table class="table table-striped table-hover table-fixed table-responsive full-height">
+                    <thead >
+                        <!-- <th class="col-md-1">S No</th> -->
+                        <th class="col-md-2 col-sm-2 col-xs-2" tooltip="Promo Code name">Code</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2" tooltip="Total discount">Discount <i class="fa fa-inr" aria-hidden="true"></i></th>
+                        <th class="col-md-2 col-sm-2 col-xs-2" tooltip="required min amount to apply promo code">Min Amount</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2" tooltip="Promo code is valid from">Start Date</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2" tooltip="Promo Code is valid upto">End Date</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2">Action</th>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat=" promoCode in PC.promoCodeList">
+                            <td class="col-md-2 col-sm-2 col-xs-2 cursor-pointer hyperlink" ui-sref="promoCode.edit({promo_id:promoCode._id})">{{promoCode.promoCode}}</td>
+                            <td class="col-md-2 col-sm-2 col-xs-2">{{promoCode.discount ? promoCode.discount : 'NA' }}</td>
+                            <td class="col-md-2 col-sm-2 col-xs-2">{{promoCode.minAmmountForDiscount ? promoCode.minAmmountForDiscount : 0 }}</td>
+                            <td class="col-md-2 col-sm-2 col-xs-2">{{promoCode.startDate | date:'dd-MM-yyyy'}}</td>
+                            <td class="col-md-2 col-sm-2 col-xs-2">{{promoCode.endDate | date:'dd-MM-yyyy'}}</td>
+                            <td class="col-md-2 col-sm-2 col-xs-2"><i  class="fa fa-pencil-square-o cursor-pointer" aria-hidden="true" ui-sref="promoCode.edit({promo_id:promoCode._id})"></i> &nbsp;<i  class="fa fa-trash-o cursor-pointer" aria-hidden="true" data-ng-click="PC.openModal(promoCode)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="PC.showLoading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="!PC.showLoading && !PC.promoCodeList.length">
+           <h3>No promocode found</h3>
+        </div>  
+    </div>
+</section>

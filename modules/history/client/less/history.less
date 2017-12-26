@@ -1,0 +1,130 @@
+
+.progress {
+    position: relative;
+	height: 200px;
+	width: 200px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #dedede;
+}
+.clip-1, .clip-2, .slice-1, .slice-2 {
+    position:absolute;
+    top:0;
+    left:0;
+    width:200px;
+    height:200px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+}
+.slice-1, .slice-2 {
+    background-color:#5cb85c;
+    border-color:#5cb85c;
+    -moz-transform:rotate(0);
+    -webkit-transform:rotate(0);
+    -o-transform:rotate(0);
+    transform:rotate(0);
+}
+.clip-1, .slice-2 {
+    clip:rect(0px, 200px, 200px, 100px);
+}
+.clip-2, .slice-1 {
+    clip:rect(0, 100px, 200px, 0px);
+}
+.progress .label {
+	position: absolute;
+	margin:20px;
+	background-color:#fff;
+	height:160px;
+	width:160px;
+	line-height:160px;
+	text-align:center;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	color:#5cb85c;
+	padding:0;
+    font-size:60px;
+}
+.transaction-submit-btn{
+	width: 10vw; 
+	background-color: #2EC9A7 !important;
+}
+.transaction-submit-order-btn{
+    float: right;
+    width: 10vw; 
+    background:#ffcc80;
+    margin-left: 3vw;
+}
+.transaction-action-container {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+	background-color: gainsboro;
+	height: 35vh;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+
+  }
+  .common-action-container{
+	.hide-border{
+		-webkit-box-ordinal-group: 3;
+		-webkit-order: 2;
+		order: 2;
+		display: block;
+		margin-top: 0;
+		background: none;
+		padding: 2px 2px 1px;
+		border-width: 0 0 1px;
+		line-height: 26px;
+		height: 30px;
+		-ms-flex-preferred-size: 26px;
+		border-radius: 0;
+		border-style: solid;
+		width: 100%;
+		box-sizing: border-box;
+		float: left;
+		&:focus {
+			outline: none;
+		}
+	}
+	.bottle-code-submit-btn{
+		display: flex;
+		align-items: flex-end;
+	}
+  }
+.payment-container {
+	display: flex;
+	justify-content: center;
+}
+.info {
+	width: 70%;
+}
+.table-container {
+	width: 40vw;
+	display: flex;
+	flex-direction: column;
+}
+.ok-btn {
+	width: 20vw;
+	background: #E8C197;
+}
+.modal-footer-btn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.card {
+	box-shadow: 0 4px 8px 5px rgba(0,0,0,0.2);
+	height: 77%;
+	margin-top: 2.5rem;
+	display: flex;
+	width: 79% !important;
+	flex-direction: column;
+	align-items: center;	
+}

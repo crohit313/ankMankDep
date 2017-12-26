@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Lato-Black';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Light';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.eot') format('embedded-opentype'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.woff') format('woff'), url('/modules/core/client/css/fonts/Lato/fonts/Lato-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url('/modules/core/client/css/fonts/Lato/fonts/Lato-Bold.eot') format('embedded-opentype');
+}
+.createUpdate-bottle-section .bottle-main-container {
+  height: 81vh;
+  padding: 1rem;
+}
+.createUpdate-bottle-section .bottle-main-container .image-container {
+  height: 32.5%;
+  padding-top: 1rem;
+}
+.createUpdate-bottle-section .bottle-main-container .image-container span {
+  width: 100%;
+}
+.createUpdate-bottle-section .bottle-main-container .image-container .image-box {
+  width: 750px !important;
+  height: 422px !important;
+  display: flex;
+  justify-content: center;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container {
+  height: 52.5%;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container .create-update-text {
+  margin-left: 1.5rem;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container .bond-type {
+  height: 32.5%;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container .bond-type .vol-input-box {
+  width: 85%;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container .drinkType-dropDown {
+  height: 32.5%;
+  width: 90%;
+}
+.createUpdate-bottle-section .bottle-main-container .input-box-container .upload-image-btn {
+  background: lightgrey;
+  color: black;
+}
+.createUpdate-bottle-section .bottle-main-container .action-btn-container {
+  height: 7%;
+  display: flex;
+  justify-content: baseline;
+  align-items: flex-end;
+  margin-left: -2rem;
+}
+.createUpdate-bottle-section .bottle-main-container .action-btn-container .update-btn-container {
+  width: 38% !important;
+  display: flex;
+  justify-content: space-between;
+}
+.createUpdate-bottle-section .bottle-main-container .action-btn-container .update-btn-container .create-btn {
+  background: #E8C197;
+  width: 45%;
+}
+.createUpdate-bottle-section .bottle-main-container .action-btn-container .update-btn-container .cancel-btn {
+  background: lightgrey;
+  width: 45%;
+}
+.createUpdate-bottle-section .bottle-main-container .action-btn-container .cancel-btn-container {
+  width: 48% !important;
+}

@@ -1,0 +1,67 @@
+<section class="section bottle-section" data-ng-controller="manageBottlesController as manageBottlesController" data-ng-init="manageBottlesController.initFunction()">
+    <div class="container full-height full-width">
+        <header-Template></header-Template>
+        <div class="row common-action-container full-width">                  
+            <div class="col-md-4 col-sm-4 col-xs-4 text-left">
+                    <h4>{{manageBottlesController.hotel.name}}</h4>
+            </div> 
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <select class="form-control selectpicker" ng-options="drink as drink.type for drink in manageBottlesController.drinkTypeList" ng-model="manageBottlesController.selectedOption" ng-change="manageBottlesController.bottleListByDrinkType(manageBottlesController.selectedOption)">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 filter-container">
+                <button class="icon-width" data-ng-click="manageBottlesController.manageHotelProductListByPage('decrease')" data-ng-disabled="manageBottlesController.currentPage == 1 && manageBottlesController.currentPageDrinkType ==1" data-ng-class="{'disabled': manageBottlesController.currentPage == 1 && manageBottlesController.currentPageDrinkType ==1}"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                <button class="icon-width icon-right" data-ng-click="manageBottlesController.manageHotelProductListByPage('increase')" data-ng-disabled="manageBottlesController.bottleList.length < manageBottlesController.itemsPerPage || manageBottlesController.disablePageNavigation" data-ng-class="{'disabled': manageBottlesController.bottleList.length < manageBottlesController.itemsPerPage || manageBottlesController.disablePageNavigation }"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 text-right" ng-if="manageBottlesController.renderIfSuperAdmin()">
+                <button class="btn update-btn" ui-sref="hotels.update({hotelId: manageBottlesController.hotel._id})" ng-click="manageBottlesController.saveToRootScope();">Go Back</button>
+            </div>   
+        </div>
+        <div class="row bottle-list-main-container full-width" ng-hide="manageBottlesController.showLoading" ng-if="manageBottlesController.bottleList.length">
+            <div class="col-md-12 col-sm-12 col-xs-12 full-height">
+                <div class="row card-container">
+                <div class="productCard  col-md-3 col-sm-3 col-xs-3" data-ng-repeat="bottle in manageBottlesController.bottleList | orderBy: 'name' track by $index" id="manageBottlesController.bottleList.indexOf(bottle)">
+                    <div class="row card-image horizontal-centered no-padding">
+                        <img class="card-img-top img-responsive" src="{{manageBottlesController.awsUrl+bottle.imageUrl}}" alt="no preview" ng-click="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked=!manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked;manageBottlesController.createCheckedProductList(manageBottlesController.bottleList.indexOf(bottle), bottle._id)">
+                        <div class="checkbox checkbox-position">
+                            <label style="font-size: 1.5em">
+                                <input type="checkbox" value="" data-ng-class="{'disabled': manageBottlesController.renderIfAdmin()}" ng-disabled="manageBottlesController.renderIfAdmin()" ng-model="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked" ng-click="manageBottlesController.createCheckedProductList(manageBottlesController.bottleList.indexOf(bottle), bottle._id)">
+                                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row card-body horizontal-centered card-body" ng-click="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked=!manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked;manageBottlesController.createCheckedProductList(manageBottlesController.bottleList.indexOf(bottle), bottle._id)">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row card-body-heading card-title-font text-ellipses" tooltip="{{bottle.name}}">
+                            {{bottle.name}}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:1em;"  ng-hide="bottle.type.type === 'Wine' || bottle.type.type === 'Beer' " ng-if="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked">
+                        <div ng-class="{'input-group': manageBottlesController.renderIfSuperAdmin(), 'form-group': manageBottlesController.renderIfAdmin()}">
+                            <input type="number" data-ng-model="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].costByHotel" class="form-control input-sm" placeholder="Cost"  tooltip="Cost per 30 ML" aria-describedby="basic-addon1" min="0" ng-click="screenColor='#fcf9f9'" ng-style="{'background-color': screenColor};" ng-disabled="manageBottlesController.renderIfAdmin();">
+                            <i class="input-group-addon cursor-pointer icon-save" id="basic-addon1" ng-hide="manageBottlesController.renderIfAdmin()" ng-click="manageBottlesController.updateCostByHotel(manageBottlesController.bottleList.indexOf(bottle), bottle._id);screenColor='#e3f4ed'">Save</i>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:1em;"  ng-show="bottle.type.type === 'Beer'" ng-if="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].checked">
+                        <div class="input-group">
+                            <input type="number" data-ng-model="manageBottlesController.bottle[manageBottlesController.bottleList.indexOf(bottle)].costByHotel" class="form-control input-sm" placeholder="Cost"  tooltip="Cost per pint" aria-describedby="basic-addon1" min="0" ng-click="screenColor='#fcf9f9'" ng-style="{'background-color': screenColor};" ng-disabled="manageBottlesController.renderIfAdmin();">
+                            <i class="input-group-addon cursor-pointer icon-save" id="basic-addon1" ng-hide="manageBottlesController.renderIfAdmin()" ng-click="manageBottlesController.updateCostByHotel(manageBottlesController.bottleList.indexOf(bottle), bottle._id);screenColor='#e3f4ed'">Save</i>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+            </div>
+        </div>
+        <div class="row full-height full-width horizontal-centered verticle-centered" ng-show="manageBottlesController.showLoading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>                    
+        </div>
+        <div class="full-width full-height horizontal-centered verticle-centered" ng-show="!manageBottlesController.bottleList.length && manageBottlesController.paginationForDrinkType">
+            <h3>No product found with the associated drink type</h3>
+        </div>
+        <div class="full-width full-height horizontal-centered verticle-centered" ng-show="!manageBottlesController.bottleList.length && !manageBottlesController.paginationForDrinkType">
+            <h3>No product found</h3>
+        </div>
+    </div>
+</section>
