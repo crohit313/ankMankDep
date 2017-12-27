@@ -167,10 +167,12 @@ angular.module('hotels').controller('hotelsController', ['$scope', '$rootScope',
     _this.setHotelAddress = function() {
       
       if(angular.isObject(_this.hotel.address)) {
+        if(_this.hotel.address.getPlace().geometry.location != undefined){
         var location = _this.hotel.address.getPlace().geometry.location;
         _this.hotel.lat = location.lat();
         _this.hotel.lng = location.lng();
         _this.hotel.address = _this.hotel.address.getPlace().formatted_address;
+        }
       } else {
         if(_this.hotel.address == '') {
           delete _this.hotel.lat;
