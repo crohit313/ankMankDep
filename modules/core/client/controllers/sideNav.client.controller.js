@@ -1,6 +1,7 @@
 angular.module('core').controller('sideNavController', ['$scope', '$rootScope', '$stateParams', '$state', 'Authentication', 'notificationService', 'authenticationService', '$window', '$timeout', '$location',
   function ($scope, $rootScope, $stateParams, $state, Authentication, notificationService, authenticationService, $window, $timeout, $location) {
       var _this = this;
+	  console.log('inside controller')
       _this.hideNavbar = false;
       _this.authentication = Authentication.user;
       var stateNameArray = ['advertisement', 'bottles', 'hotels', 'promoCode'];      
