@@ -26,11 +26,7 @@ module.exports = {
         'public/lib/ng-file-upload/ng-file-upload-shim.js',
         'public/lib/ng-file-upload/ng-file-upload.js',
         'public/lib/angularjs-google-maps/dist/angularjs-google-maps.js',
-        'public/lib/ng-table-to-csv/dist/ng-table-to-csv.js',
-        'modules/core/client/app/config.js',
-      'modules/core/client/app/init.js',
-      'modules/*/client/*.js',
-      'modules/*/client/**/*.js'
+        'public/lib/ng-table-to-csv/dist/ng-table-to-csv.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
@@ -42,6 +38,12 @@ module.exports = {
     ],
     sass: [
       'modules/*/client/scss/*.scss'
+    ],
+    js: [
+      'modules/core/client/app/config.js',
+      'modules/core/client/app/init.js',
+      'modules/*/client/*.js',
+      'modules/*/client/**/*.js'
     ],
     views: ['modules/*/client/views/**/*.html']
   },
@@ -57,3 +59,5 @@ module.exports = {
     views: 'modules/*/server/views/*.html'
   }
 };
+
+console.log(module.exports)
