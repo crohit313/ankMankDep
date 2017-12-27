@@ -1,4 +1,4 @@
-angular.module('core').directive('sideNavBar', function($scope) {
+angular.module('core').directive('sideNavBar', function($sce) {
     console.log('in directive')
     return {
         restrict: 'AEC',
