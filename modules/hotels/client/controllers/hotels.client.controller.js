@@ -167,7 +167,7 @@ angular.module('hotels').controller('hotelsController', ['$scope', '$rootScope',
     _this.setHotelAddress = function() {
       
       if(angular.isObject(_this.hotel.address)) {
-        if(_this.hotel.address.getPlace().geometry.location != undefined){
+        if(_this.hotel.address.getPlace() != undefined){
         var location = _this.hotel.address.getPlace().geometry.location;
         _this.hotel.lat = location.lat();
         _this.hotel.lng = location.lng();
