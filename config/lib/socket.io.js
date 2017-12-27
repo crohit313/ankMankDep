@@ -11,7 +11,7 @@ var config = require('../config'),
   socketio = require('socket.io'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
-
+	console.log('hello in super Socket')
 // Define the Socket.io configuration method
 module.exports = function (app, db) {
   var server;
