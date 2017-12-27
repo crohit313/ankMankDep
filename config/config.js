@@ -8,7 +8,7 @@ var _ = require('lodash'),
   glob = require('glob'),
   fs = require('fs'),
   path = require('path');
-
+console.log('check in main cnfig');
 /**
  * Get files by glob patterns
  */
