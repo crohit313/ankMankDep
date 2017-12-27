@@ -31,6 +31,7 @@ module.exports.start = function start(callback) {
 	var User = mongo.model('User'),
 		Passport = mongo.model('Passport');
 	
+		console.log('hello in super')
 	_this.init(function(app, db, config) {
 
 		// Start the app by listening on <port>
@@ -55,10 +56,9 @@ module.exports.start = function start(callback) {
 	function createSuperAdmin () {
 		User.find({}, function(err, users) {
 			if (err) {
-				// console.log('err', err);
+				 console.log('err', err);
 			} else if(!users.length) {
 				//Single super admin//
-				console.log('hello in super')
 				var superAdmin = {
 					displayName : 'superAdmin',
 					username : 'superAdmin',
