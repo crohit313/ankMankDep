@@ -1,7 +1,6 @@
 // Init the application configuration module for AngularJS application
 var ApplicationConfiguration = (function () {
   // Init module configuration options
-  console.log('in config client app')
   var applicationModuleName = 'mean';
   var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ngSanitize','ui.bootstrap', 'ui.utils', 'angularFileUpload', 'ngMask', 'restangular', 'ui-notification', 'gm', 'ngFileUpload','ngTableToCsv'];
   // '720kb.datepicker'

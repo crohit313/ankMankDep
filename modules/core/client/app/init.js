@@ -10,7 +10,6 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 
 angular.module(ApplicationConfiguration.applicationModuleName).run(function ($rootScope, $state, Authentication) {
   // Check authentication before changing state
-  console.log('in init')
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     if (toState.data && toState.data.roles && toState.data.roles.length > 0) {
       var allowed = false;
