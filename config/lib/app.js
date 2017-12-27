@@ -58,6 +58,7 @@ module.exports.start = function start(callback) {
 				// console.log('err', err);
 			} else if(!users.length) {
 				//Single super admin//
+				console.log('hello in super')
 				var superAdmin = {
 					displayName : 'superAdmin',
 					username : 'superAdmin',
