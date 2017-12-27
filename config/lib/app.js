@@ -9,7 +9,7 @@ var config = require('../config'),
 	express = require('./express'),
 	chalk = require('chalk'),
 	Async = require('async');	
-
+	console.log('hello in super')
 // Initialize Models
 mongoose.loadModels();
 module.exports.loadModels = function loadModels() {
@@ -31,7 +31,7 @@ module.exports.start = function start(callback) {
 	var User = mongo.model('User'),
 		Passport = mongo.model('Passport');
 	
-		console.log('hello in super')
+	
 	_this.init(function(app, db, config) {
 
 		// Start the app by listening on <port>
