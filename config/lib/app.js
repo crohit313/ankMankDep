@@ -9,7 +9,7 @@ var config = require('../config'),
 	express = require('./express'),
 	chalk = require('chalk'),
 	Async = require('async');	
-	console.log('hello in super')
+
 // Initialize Models
 mongoose.loadModels();
 module.exports.loadModels = function loadModels() {
