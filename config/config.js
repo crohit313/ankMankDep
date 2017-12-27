@@ -53,7 +53,7 @@ var getGlobbedPaths = function (globPatterns, excludes) {
  */
 var validateEnvironmentVariable = function () {
   var environmentFiles = glob.sync('./config/env/' + process.env.NODE_ENV + '.js');
-  console.log();
+  console.log('dsd');
   if (!environmentFiles.length) {
     if (process.env.NODE_ENV) {
       console.error(chalk.red('+ Error: No configuration file found for "' + process.env.NODE_ENV + '" environment using development instead'));
