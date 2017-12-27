@@ -68,11 +68,13 @@ angular.module('core').service('uploadService', ['Upload','$rootScope', '$q', '$
         _this.getAwsUrl = function () {
             return 'https://s3-'+_this.config.region+'.amazonaws.com/'+_this.config.bucketName+'/';
         };
+
+        /* As uploaded on heroku so commented
         _this.setCredentials = function () {
             AWS.config = new AWS.Config();
             AWS.config.region = _this.config.region;
             AWS.config.update({ accessKeyId: _this.config.accessKeyId, secretAccessKey: _this.config.secretAccessKey });
-        };
+        };*/
 
         $rootScope.$watch(function(){return _this.config;}, function(newValue, oldValue){
             if(newValue.bucketName && !oldValue.bucketName) {
