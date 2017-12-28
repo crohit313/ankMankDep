@@ -29,7 +29,7 @@ module.exports.connect = function (cb) {
 
       // Enabling mongoose debug mode if required
       mongoose.set('debug', config.db.debug);
-
+console.log('mongo connected');
       // Call callback FN
       if (cb) cb(db);
     }
